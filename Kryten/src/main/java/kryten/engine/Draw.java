@@ -12,6 +12,8 @@ import org.newdawn.slick.opengl.Texture;
  *
  */
 public class Draw {
+	private final static boolean counterFlag = true;
+	private static int drawCounter;
 	/**
 	 * Draws rectangle with color and texture. Draw from x, y coordinates.
 	 * 
@@ -45,6 +47,7 @@ public class Draw {
 			glEnd();
 		}
 		glPopMatrix();
+		incDrawCounter();
 	}
 
 	/**
@@ -87,6 +90,7 @@ public class Draw {
 			glEnd();
 		}
 		glPopMatrix();
+		incDrawCounter();
 	}
 	/**
 	 * Draws rectangle with color and texture. Draw from x, y coordinates.
@@ -126,5 +130,20 @@ public class Draw {
 			glEnd();
 		}
 		glPopMatrix();
+		incDrawCounter();
+	}
+	
+	private static void incDrawCounter(){
+		if(counterFlag){
+			Draw.drawCounter++;
+		}
+	}
+	
+	public static void resetDrawCounter(){
+		Draw.drawCounter = 0;
+	}
+	
+	public static int getDrawCounter() {
+		return Draw.drawCounter;
 	}
 }
