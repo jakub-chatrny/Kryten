@@ -1,7 +1,48 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
   <artifactId>Kryten</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>Kryten</name>
-  <groupId>net.chatrny.kryten</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Kryten</name>
+	<groupId>net.chatrny.kryten</groupId>
+	<dependencies>
+		<dependency>
+			<groupId>org.lwjgl.lwjgl</groupId>
+			<artifactId>lwjgl</artifactId>
+			<version>2.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slick2d</groupId>
+			<artifactId>slick2d-core</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<!--<dependency>
+			<groupId>javax.jnlp</groupId>
+			<artifactId>jnlp-api</artifactId>
+			<version>8.0</version>
+			<scope>system</scope>
+			<systemPath>${java.home}/lib/javaws.jar</systemPath>
+		</dependency>-->
+		<dependency>
+			<groupId>javax.jnlp</groupId>
+			<artifactId>jnlp-api</artifactId>
+			<version>8.0</version>
+			<scope>system</scope>
+			<systemPath>/usr/local/jdk1.8.0_25/jre/lib/javaws.jar</systemPath>
+		</dependency>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
