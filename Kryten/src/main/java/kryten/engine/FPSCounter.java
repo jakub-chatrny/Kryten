@@ -1,4 +1,4 @@
-package engine;
+package kryten.engine;
 
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;

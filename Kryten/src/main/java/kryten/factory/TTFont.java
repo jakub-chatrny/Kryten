@@ -1,4 +1,4 @@
-package factory;
+package kryten.factory;
 
 import java.util.HashMap;
 import java.util.Map;

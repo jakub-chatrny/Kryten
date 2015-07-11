@@ -1,4 +1,4 @@
-package game;
+package kryten.game;
 
 /**
  * Contains methods which need to be implemented to run a game.

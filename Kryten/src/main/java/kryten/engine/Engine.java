@@ -1,8 +1,8 @@
-package engine;
+package kryten.engine;
+
+import kryten.game.GameTemplate;
 
 import org.lwjgl.opengl.Display;
-
-import game.GameTemplate;
 
 import static org.lwjgl.opengl.GL11.*;
 

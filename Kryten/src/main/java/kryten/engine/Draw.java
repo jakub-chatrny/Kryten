@@ -1,4 +1,4 @@
-package engine;
+package kryten.engine;
 
 import static org.lwjgl.opengl.GL11.*;
 

@@ -1,4 +1,4 @@
-package game;
+package kryten.game;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

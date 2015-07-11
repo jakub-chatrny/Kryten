@@ -1,4 +1,4 @@
-package factory;
+package kryten.factory;
 
 import java.awt.Font;
 import java.util.HashMap;
