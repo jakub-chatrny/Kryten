@@ -16,7 +16,7 @@ import org.newdawn.slick.opengl.TextureLoader;
  */
 public class TextureFactory {
 	public static Map<String, Texture> textures = new HashMap<String, Texture>();
-	public static String RES_PATH = "res/";
+	public static String RES_PATH = TextureFactory.class.getResource("/").getPath();//"res/";
 	private static boolean DEBUG_RESOURCE = false;
 	/**
 	 * Initialize factory

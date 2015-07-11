@@ -40,8 +40,9 @@ public class FontFactory {
 
 		font = fonts.get(name);
 		if (null == font) { // font not found
+			capacity++;
 			if(DEBUG_RESOURCE)
-				System.out.println("New TrueTypeFont created " + (++capacity));
+				System.out.println("New TrueTypeFont created " + (capacity));
 			ttf = convertFontFromAwt(name, Font.PLAIN, size);
 			// save
 			font = new TTFont();
@@ -52,8 +53,9 @@ public class FontFactory {
 		} else {
 			ttf = font.get(size);
 			if (null == ttf) {
+				capacity++;
 				if(DEBUG_RESOURCE)
-					System.out.println("New TrueTypeFont created " + (++capacity));
+					System.out.println("New TrueTypeFont created " + (capacity));
 				ttf = convertFontFromAwt(name, Font.PLAIN, size);
 				font.put(size, ttf);
 			}
