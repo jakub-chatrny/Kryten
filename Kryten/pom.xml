@@ -30,8 +30,9 @@
 			<artifactId>jnlp-api</artifactId>
 			<version>8.0</version>
 			<scope>system</scope>
-			<systemPath>/usr/local/jdk1.8.0_25/jre/lib/javaws.jar</systemPath>
+			<!--systemPath>/usr/local/jdk1.8.0_25/jre/lib/javaws.jar</systemPath-->
 			<!--systemPath>/opt/java/jdk/jdk1.8.0_45/jre/lib/javaws.jar</systemPath-->
+			<systemPath>${java.home}/lib/javaws.jar</systemPath>
 		</dependency>
 
 	</dependencies>
