@@ -7,6 +7,10 @@ For running an example you need to set path to native libraries to VM Arguments.
 - On Mac: -Djava.library.path=lib/native/macosx
 - On Windows: -Djava.library.path=lib/native/windows
 
+# Examples
+
+Engine was originaly created for project [sheep_heap](https://github.com/jakub-chatrny/sheep_heep/).
+
 # Structure
   - Engine 
   Static class used to initialize OpenGL and Display (Window of aplication). Also contains gameLoop which is doing these steps:
