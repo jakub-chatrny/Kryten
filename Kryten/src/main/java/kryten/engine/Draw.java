@@ -14,6 +14,37 @@ import org.newdawn.slick.opengl.Texture;
 public class Draw {
 	private final static boolean counterFlag = true;
 	private static int drawCounter;
+	
+	/**
+	 * Draws line with color and texture. 
+	 * 
+	 * @param sx
+	 * @param sy
+	 * @param ex
+	 * @param ey
+	 * @param color
+	 * @param texture
+	 */
+	public static void line(final float sx, final float sy, final float ex, final float ey,
+			final Color color, final Texture texture) {
+		glPushMatrix();
+		{
+			//glTranslatef(0, 0, 0);
+			glColor4f(color.r, color.g, color.b, color.a);
+
+			texture.bind();
+
+			glBegin(GL_LINES);
+			{
+				glVertex2f(sx, sy);
+				glVertex2f(ex, ey);
+				
+			}
+			glEnd();
+		}
+		glPopMatrix();
+		incDrawCounter();		
+	}
 	/**
 	 * Draws rectangle with color and texture. Draw from x, y coordinates.
 	 * 
