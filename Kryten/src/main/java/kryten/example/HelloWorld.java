@@ -41,6 +41,7 @@ public class HelloWorld extends GameTemplate {
 		
 		
 		Draw.rect(posX, posY, width, height, color, TextureFactory.get("blank"));
+		Draw.line(posX, posY, posX+width, posY+height, Color.black, TextureFactory.get("blank"));
 		
 		TrueTypeFont ttf = FontFactory.getFont("Times New Roman", Font.PLAIN,
 				fontSize);
@@ -48,6 +49,8 @@ public class HelloWorld extends GameTemplate {
 				Color.white);
 		ttf.drawString(posX, posY+(fontSize*2), "True type font loaded to FontFactory:"+FontFactory.capacity,
 				Color.white);
+		
+		
 		
 	}
 
