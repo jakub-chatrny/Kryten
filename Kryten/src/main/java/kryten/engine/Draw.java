@@ -3,6 +3,7 @@ package kryten.engine;
 import static org.lwjgl.opengl.GL11.*;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.newdawn.slick.Color;
@@ -55,9 +56,11 @@ public class Draw {
 	 * @param tstep - step of iteration 0.0001 is recomened, less better
 	 * @param color - color of curve
 	 * @param texture - texture of curve
+	 * @return 
 	 */
-	public static void curve(final List<Point> cntrlPts, double tstep, 
+	public static List<Point> curve(final List<Point> cntrlPts, double tstep, 
 			final Color color, final Texture texture) {
+		List<Point> aproxPts = new ArrayList<Point>();
 		Point prev_pt = cntrlPts.get(0);
 		Point pt = cntrlPts.get(0);
 		//for(int i = 0; i < cntrlPts.size()-1; i++){
@@ -67,6 +70,7 @@ public class Draw {
 				//pt.y = y = (float) (((1-t) * cntrlPts.get(i).getY()) + t * cntrlPts.get(i+1).getY());
 				prev_pt = pt;
 				pt = getCasteljauPoint(cntrlPts, cntrlPts.size()-1 ,0,t);
+				aproxPts.add(pt);
 				glPushMatrix();
 				{
 					glColor4f(color.r, color.g, color.b, color.a);
@@ -85,6 +89,7 @@ public class Draw {
 				
 			}
 		//}
+		return aproxPts;
 		
 	}
 	
