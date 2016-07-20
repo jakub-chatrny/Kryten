@@ -39,8 +39,8 @@ public class HelloWorld extends GameTemplate {
 	public void render() {
 		final int posX = 50;
 		final int posY = 50;
-		final int width = 600;
-		final int height = 100;
+		final int width = 1200;
+		final int height = 200;
 		final Color color = Color.gray;
 		
 		//drawing a gray rectangle

@@ -44,6 +44,8 @@ public class DisplayConfig {
 	 */
 	protected static void initDisplay(final DisplayMode displaymode, final boolean vSync) {
 		try {
+			WINDOW_WIDTH = displaymode.getWidth();
+			WINDOW_HEIGHT = displaymode.getHeight();
 			Display.setDisplayMode(displaymode);
 			Display.create();
 			Display.setVSyncEnabled(vSync);
