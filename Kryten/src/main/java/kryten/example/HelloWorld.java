@@ -18,7 +18,8 @@ public class HelloWorld extends GameTemplate {
 	private int fontSize = 10;
 	
 	public static void main(String[] args){
-		Engine.init(800, 600);
+		//Engine.init(800,600);
+		Engine.init();
 		HelloWorld game = new HelloWorld();
 		Engine.initGame(game);
 		Engine.run();

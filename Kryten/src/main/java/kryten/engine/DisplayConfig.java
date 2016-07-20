@@ -19,20 +19,35 @@ import org.lwjgl.opengl.DisplayMode;
  */
 public class DisplayConfig {
 	public static DisplayMode displaymode;
+	private static final boolean RESIZABLE_WINDOW = true;
+	public static int WINDOW_WIDTH = 800; 
+	public static int WINDOW_HEIGHT = 600; 
 
 	/**
 	 * Initialize new display
 	 * 
 	 * @param width
-	 * @param height
 	 * @param vSync
 	 */
 	public static void initDisplay(final int width, final int height, final boolean vSync) {
+		WINDOW_WIDTH = width;
+		WINDOW_HEIGHT = height;
+		displaymode = new DisplayMode(width, height);
+		initDisplay(displaymode, vSync);
+	}
+	
+	/**
+	 * Initialize new display
+	 * 
+	 * @param displaymode
+	 * @param vSync
+	 */
+	protected static void initDisplay(final DisplayMode displaymode, final boolean vSync) {
 		try {
-			displaymode = new DisplayMode(width, height);
 			Display.setDisplayMode(displaymode);
 			Display.create();
 			Display.setVSyncEnabled(vSync);
+			Display.setResizable(RESIZABLE_WINDOW);
 			// input
 			Keyboard.create();
 			Mouse.create();
@@ -40,6 +55,29 @@ public class DisplayConfig {
 		} catch (LWJGLException ex) {
 			Logger.getLogger(Engine.class.getName())
 					.log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	/**
+	 * Initialize new display with largest possible display mode 
+	 * 
+	 * @param displaymode
+	 * @param vSync
+	 */
+	public static void initDisplay(final boolean vSync) {
+		try {
+			final DisplayMode[] dms = Display.getAvailableDisplayModes();
+			for(int i = 0; i < dms.length; i++){
+				if(dms[i].isFullscreenCapable()){
+					initDisplay(dms[i],vSync);
+					//System.out.println(dms[i].getWidth()+" "+dms[i].getHeight());
+					break;
+				}
+			}
+			
+		} catch (LWJGLException ex) {
+			Logger.getLogger(Engine.class.getName())
+			.log(Level.SEVERE, null, ex);
 		}
 	}
 
@@ -69,6 +107,33 @@ public class DisplayConfig {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 		glOrtho(0, width, height, 0, 1, -1);
+		glMatrixMode(GL_MODELVIEW);
+	}
+	
+	/**
+	 * Initialize openGL stuff.
+	 * 
+	 */
+	public static void initGL() {
+		glEnable(GL_TEXTURE_2D);
+		glShadeModel(GL_SMOOTH);
+		glDisable(GL_DEPTH_TEST);
+		glDisable(GL_LIGHTING);
+
+		glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
+		glClearDepth(1);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+		glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+		glMatrixMode(GL_MODELVIEW);
+
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 	}
 

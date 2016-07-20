@@ -6,6 +6,9 @@ import org.lwjgl.opengl.Display;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -32,6 +35,17 @@ public class Engine {
 		DisplayConfig.initDisplay(windowWidth, windowHeight, vSyncFlag);
 		DisplayConfig.initGL(windowWidth, windowHeight);
 		FPSCounter.initFPSCounter();
+		//printScreenSize();
+	}
+	/**
+	 * Initialize the display and openGL.
+	 * 
+	 */
+	public static void init() {
+		DisplayConfig.initDisplay(vSyncFlag);
+		DisplayConfig.initGL();
+		FPSCounter.initFPSCounter();
+		//printScreenSize();
 	}
 
 	/**
@@ -119,6 +133,14 @@ public class Engine {
 		Display.destroy();
 		Keyboard.destroy();
 		Mouse.destroy();
+	}
+	
+	protected static void printScreenSize(){
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		
+		double width = screenSize.getWidth();
+		double height = screenSize.getHeight();
+		System.out.println("width:"+width+"\n height:"+height);
 	}
 
 }
