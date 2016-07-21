@@ -109,6 +109,11 @@ public class Engine {
 	 */
 	public static void update() {
 		game.update(FPSCounter.getFPS());
+		//on window resize
+		//do re init openGL with new display size
+		if (Display.wasResized()) {
+			DisplayConfig.initGL(Display.getWidth(),Display.getHeight());
+		}
 	}
 
 	/**
@@ -133,6 +138,14 @@ public class Engine {
 		Display.destroy();
 		Keyboard.destroy();
 		Mouse.destroy();
+	}
+	
+	public static int getDisplayWidth(){
+		return Display.getWidth();
+	}
+	
+	public static int getDisplayHeight(){
+		return Display.getHeight();
 	}
 	
 	protected static void printScreenSize(){
