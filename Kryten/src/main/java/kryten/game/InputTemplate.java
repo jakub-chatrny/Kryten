@@ -3,7 +3,7 @@ package kryten.game;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-public abstract class InputTemplate {
+public abstract class InputTemplate implements MouseActions{
 	private boolean leftMousePressed;
 	private boolean rightMousePressed;
 	
@@ -53,22 +53,20 @@ public abstract class InputTemplate {
 	}
 	
 	protected boolean mouseLeftHoldCheck() {
-	    if (Mouse.getEventButtonState()) {
-	        if (Mouse.isButtonDown(0)) {
+	    if (Mouse.isButtonDown(0)) {
+	        if (!Mouse.getEventButtonState()) {
 	        	mouseLeftHoldAction(Mouse.getX(),Mouse.getY());
-	        	return true;
+	        	setLeftMousePressed(true);
 	        }
-	    }else {
-	        if (Mouse.isButtonDown(0)) {
-	        	mouseLeftReleasedAction(Mouse.getX(),Mouse.getY());
-	        }
+	    }
+	    else if (isLeftMousePressed()){
+	    	mouseLeftReleasedAction(Mouse.getX(),Mouse.getY());
+	    	setLeftMousePressed(false);
 	    }
 		return false;
 	}
 
-	protected abstract void mouseLeftHoldAction(int x, int y);
-	protected abstract void mouseLeftPressedAction(int x, int y);
-	protected abstract void mouseLeftReleasedAction(int x, int y);
+
 	
 	protected boolean mouseRightPressedCheck() {
 		if (Mouse.isButtonDown(1)) {
@@ -78,12 +76,25 @@ public abstract class InputTemplate {
 			setRightMousePressed(true);
 			return true;
 		} else if (!Mouse.isButtonDown(1) && isRightMousePressed()) {
+			mouseRightReleasedAction(Mouse.getX(),Mouse.getY());
 			setRightMousePressed(false);	
 		}
 		return false;
 	}
+	protected boolean mouseRightHoldCheck() {
+	    if (Mouse.isButtonDown(1)) {
+	        if (!Mouse.getEventButtonState()) {
+	        	mouseRightHoldAction(Mouse.getX(),Mouse.getY());
+	        	setLeftMousePressed(true);
+	        }
+	    }
+	    else if (isLeftMousePressed()){
+	    	mouseRightReleasedAction(Mouse.getX(),Mouse.getY());
+	    	setLeftMousePressed(false);
+	    }
+		return false;
+	}
 
-	protected abstract void mouseRightPressedAction(int x, int y);
 	
 	protected boolean mouseScrollCheck() {
 		final int dWheel = Mouse.getDWheel();

@@ -10,9 +10,10 @@ import kryten.factory.FontFactory;
 import kryten.game.GameTemplate;
 import kryten.game.InputTemplate;
 
-public class MouseInputExample extends GameTemplate{
+public class MouseInputExample extends GameTemplate {
 	private InputCheck input;
 	public int fontSize = 10;
+	public Color fontColor = Color.white;
 	public int posX = 50;
 	public int posY = 50;
 	
@@ -39,11 +40,9 @@ public class MouseInputExample extends GameTemplate{
 		TrueTypeFont ttf = FontFactory.getFont("Times New Roman", Font.PLAIN,
 				fontSize);
 		ttf.drawString(posX, posY, "Hello world!",
-				Color.white);
+				fontColor);
 		ttf.drawString(posX, posY+(fontSize*2), "True type font loaded to FontFactory:"+FontFactory.capacity,
-				Color.white);
-		
-		
+				fontColor);
 		
 	}
 
@@ -77,22 +76,21 @@ public class MouseInputExample extends GameTemplate{
 			mouseScrollCheck();
 		}
 		@Override
-		protected void mouseLeftPressedAction(int x, int y) {
-			
+		public void mouseLeftPressedAction(int x, int y) {
+			fontColor=Color.red;
 			game.posX = x;
 			//origin in left bot corner
 			game.posY = Engine.getDisplayHeight()-y;
 			
 		}
 		@Override
-		protected void mouseLeftReleasedAction(int x, int y) {
-			game.posX = x;
-			//origin in left bot corner
-			game.posY = Engine.getDisplayHeight()-y;
+		public void mouseLeftReleasedAction(int x, int y) {
+			fontColor=Color.white;
 			
 		}
 		@Override
-		protected void mouseLeftHoldAction(int x, int y) {
+		public void mouseLeftHoldAction(int x, int y) {
+			fontColor=Color.red;
 			game.posX = x;
 			//origin in left bot corner
 			game.posY = Engine.getDisplayHeight()-y;
@@ -100,7 +98,19 @@ public class MouseInputExample extends GameTemplate{
 		}
 
 		@Override
-		protected void mouseRightPressedAction(int x, int y) {
+		public void mouseRightPressedAction(int x, int y) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseRightHoldAction(int x, int y) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseRightReleasedAction(int x, int y) {
 			// TODO Auto-generated method stub
 			
 		}
