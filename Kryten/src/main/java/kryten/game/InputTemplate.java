@@ -67,6 +67,23 @@ public abstract class InputTemplate {
 	}
 
 	protected abstract void mouseRightPressedAction(int x, int y);
+	
+	protected boolean mouseScrollCheck() {
+		final int dWheel = Mouse.getDWheel();
+		if (Mouse.hasWheel() && dWheel != 0){
+			if(dWheel < 0){
+				mouseScrollDownCheckAction();
+				return true;
+			}
+			else if(dWheel > 0){
+				mouseScrollUpCheckAction();
+				return true;
+			}
+		}
+		return false;
+	}
+	protected abstract void mouseScrollUpCheckAction();
+	protected abstract void mouseScrollDownCheckAction();
 
 	// ////////
 	// ARROWS//
