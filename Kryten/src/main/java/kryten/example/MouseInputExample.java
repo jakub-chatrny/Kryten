@@ -60,13 +60,39 @@ public class MouseInputExample extends GameTemplate{
 		}
 		
 		public void mouseCheck() {
-			mouseLeftPressedCheck();
+			//it's nesesery to add Check method here to run Action method.
+			//there are two modes 
+			// - PressedCheck - for action only once on press of button
+			// - HoldCheck - action is called until is button released 
+			
+			//reacts just  to click
+			//mouseLeftPressedCheck();
 			mouseRightPressedCheck();
+			
+			//reacts to drag
+			mouseLeftHoldCheck();
+			
+			
+			//mouse scroll check
 			mouseScrollCheck();
 		}
 		@Override
 		protected void mouseLeftPressedAction(int x, int y) {
 			
+			game.posX = x;
+			//origin in left bot corner
+			game.posY = Engine.getDisplayHeight()-y;
+			
+		}
+		@Override
+		protected void mouseLeftReleasedAction(int x, int y) {
+			game.posX = x;
+			//origin in left bot corner
+			game.posY = Engine.getDisplayHeight()-y;
+			
+		}
+		@Override
+		protected void mouseLeftHoldAction(int x, int y) {
 			game.posX = x;
 			//origin in left bot corner
 			game.posY = Engine.getDisplayHeight()-y;
@@ -278,6 +304,7 @@ public class MouseInputExample extends GameTemplate{
 			// TODO Auto-generated method stub
 			
 		}
+
 		
 	}
 	

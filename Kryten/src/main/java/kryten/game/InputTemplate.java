@@ -46,12 +46,29 @@ public abstract class InputTemplate {
 			setLeftMousePressed(true);
 			return true;
 		} else if (!Mouse.isButtonDown(0) && isLeftMousePressed()) {
+			mouseLeftReleasedAction(Mouse.getX(),Mouse.getY());
 			setLeftMousePressed(false);	
 		}
 		return false;
 	}
+	
+	protected boolean mouseLeftHoldCheck() {
+	    if (Mouse.getEventButtonState()) {
+	        if (Mouse.isButtonDown(0)) {
+	        	mouseLeftHoldAction(Mouse.getX(),Mouse.getY());
+	        	return true;
+	        }
+	    }else {
+	        if (Mouse.isButtonDown(0)) {
+	        	mouseLeftReleasedAction(Mouse.getX(),Mouse.getY());
+	        }
+	    }
+		return false;
+	}
 
+	protected abstract void mouseLeftHoldAction(int x, int y);
 	protected abstract void mouseLeftPressedAction(int x, int y);
+	protected abstract void mouseLeftReleasedAction(int x, int y);
 	
 	protected boolean mouseRightPressedCheck() {
 		if (Mouse.isButtonDown(1)) {
